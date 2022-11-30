@@ -8,7 +8,7 @@ import { Container, SeeMore } from "./styled"
 type Props = {
     reviews?:ReviewT[],
     onSeeMore:() => void,
-    reviewLoading:boolean
+    reviewLoading:boolean,
 }
 
 export const ReviewsComponent:React.FC<Props> = ({reviews,onSeeMore,reviewLoading}) => {

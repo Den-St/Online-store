@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { palette } from "../../ui-kit/palette";
 
 export const CategoriesContainer = styled.div`
     width: 100%;
@@ -35,7 +36,7 @@ export const CategoryName = styled.span`
     font-family: Helvetica;
     font-weight: 100;
     cursor: pointer;
-    color: #3e77aa;
+    color: ${palette.linkBlue};
 `;
 
 export const Home = styled(Link)`

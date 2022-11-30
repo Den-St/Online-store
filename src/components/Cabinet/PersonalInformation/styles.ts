@@ -1,5 +1,6 @@
 import { Media } from './../../../assets/breakpoints';
 import styled from "styled-components";
+import { palette } from '../../ui-kit/palette';
 
 export const Dir = styled.div<{$isOpened:boolean}>`
     width: 90%;
@@ -61,7 +62,6 @@ export const ItemContainer = styled.div`
 export const ItemHeader = styled.div`
     font-size: 15px;
     font-weight: 100;
-    font-family: Helvetica;
     color: #8b8b8b;
     ${Media.down.m}{
         font-size: 10px;
@@ -71,7 +71,6 @@ export const ItemHeader = styled.div`
 export const ItemContent = styled.div`
     font-size: 16px;
     font-weight: 200;
-    font-family: Helvetica;
     ${Media.down.m}{
         font-size: 12px;
     }
@@ -91,7 +90,6 @@ export const DirHeaderContainer = styled.div`
 
 export const Label = styled.div`
     font-size: 18px;
-    font-family: Helvetica;
     font-weight: 300;
     margin-left: 20px;
     width: 300px;
@@ -148,7 +146,6 @@ export const ConfirmEditingButton = styled.input`
     }
     border-radius:3px;
     font-size: 16px;
-    font-family: Helvetica;
     font-weight: 400;
     
 `;
@@ -160,7 +157,6 @@ export const CancelEditingButton = styled.span`
     cursor: pointer;
     border-radius: 2px;
     color:red;
-    font-family: Helvetica;
     font-weight: 100px;
     background-color: transparent;
     transition:0.2s;
@@ -177,4 +173,18 @@ export const ButtonsContainer = styled.div`
     width: 140px;
     display: flex;
     justify-content: space-between;
+`;
+
+export const QuitAccount = styled.span`
+    color: ${palette.linkBlue};
+    cursor: pointer;
+    transition: 0.2s;
+    font-size: 18px;
+    margin-left: 4px;
+    &:hover{
+        color: ${palette.linkRed};
+    } 
+    ${Media.down.m}{
+        font-size: 12px;
+    }
 `;

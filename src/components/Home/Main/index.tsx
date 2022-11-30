@@ -1,7 +1,7 @@
 import { Pagination } from "antd";
 import { ProductT } from "../../../types/product.type";
 import { ProductItem } from "../../ui-kit/Product/index";
-import { ProductsContainer } from "../../ui-kit/Product/styles";
+import { PaginationContainer, ProductsContainer } from "../../ui-kit/Product/styles";
 import { ProductSceleton } from "../../ui-kit/Product/Sceleton/ProductSceleton";
 import { Container } from "./styles";
 
@@ -23,6 +23,6 @@ export const MainComponent:React.FC<Props> = ({total,onChangePage,pageNumber,cha
             <ProductItem changeFavoriteStatus={changeFavoriteStatus} checkIfFavorite={checkIfFavorite} isAlreadyInCart={!!productsIdsInCart?.find(prodId => prodId == product.id)} key={product.id} id={product.id} photo={product.images.find(img => img.isMain)?.url} name={product.name} price={product.price}/>)
             : <ProductSceleton/>}
         </ProductsContainer>
-        <Pagination defaultCurrent={pageNumber} total={total} onChange={onChangePage}/>
+        <PaginationContainer><Pagination defaultCurrent={pageNumber} total={total} onChange={onChangePage}/></PaginationContainer>
     </Container>
 }

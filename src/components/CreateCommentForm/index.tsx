@@ -17,7 +17,10 @@ type Props = {
 export const CreateCommentFormComponent:React.FC<Props> = ({onCreate,success,close}) => {
     const {register,formState:{errors},handleSubmit} = useForm<CreateCommentFormInterface>();
     useEffect(() => {
-        if(success) close();
+        if(success) {
+            close();
+            document.body.style.overflowY = 'unset'
+        }
     },[success])
     return <Container onSubmit={handleSubmit(onCreate)}>
         <InputBlock>

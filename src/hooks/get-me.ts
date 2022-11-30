@@ -11,13 +11,19 @@ import {GetMeInteface} from "../types/get-me.inteface";
 export const useGetMe = () => {
     const token = Cookies.get("token");
     const [loading, setLoading] = useState(true);
-    const {data, refetch} = useQuery<GetMeInteface,TokenType>(GetMeQuery,{variables:{token:token}});
+    const {data, refetch} = useQuery<GetMeInteface,TokenType>(GetMeQuery,{variables:{token:token},skip:!token});
     const setUser = useSetRecoilState(userState);
 
 
     const fetch = async () => {
+        if(!token) {
+            setUser({user:{},isLoading:false});
+            setLoading(false);
+            return;
+        }
+
         try {
-            const user = await refetch();
+            const user = await refetch({});
             setUser({user:user?.data?.getMe as UserType,isLoading:false});
             setLoading(false)
         } catch (error) {
@@ -27,7 +33,7 @@ export const useGetMe = () => {
 
     useEffect(() => {
         fetch();
-    },[])
+    },[token])
 
     return {loading};
 }

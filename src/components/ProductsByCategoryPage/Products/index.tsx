@@ -5,7 +5,7 @@ import { OrderRuleT } from "../../../types/order-rule.type"
 import { ProductT } from "../../../types/product.type"
 import { ProductItem } from "../../ui-kit/Product/index"
 import { Container } from "../../ui-kit/Product/Container/styles"
-import { ProductsContainer } from "../../ui-kit/Product/styles";
+import { PaginationContainer, ProductsContainer } from "../../ui-kit/Product/styles";
 import { ProductSceleton } from "../../ui-kit/Product/Sceleton/ProductSceleton"
 
 type Props = {
@@ -37,6 +37,6 @@ export const ProductsComponent:React.FC<Props> = ({currentOrderRule,onChangeOrde
                 : <ProductSceleton/>}
         </ProductsContainer>
 
-        {!!total && (total > 10) && <Pagination defaultCurrent={pageNumber} onChange={onChangePage} total={total}/>}
+        {!!total && (total > 10) && <PaginationContainer><Pagination defaultCurrent={pageNumber} onChange={onChangePage} total={total}/></PaginationContainer>}
     </Container>
 }

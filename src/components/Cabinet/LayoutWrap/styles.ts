@@ -5,6 +5,7 @@ export const LayoutWrapper = styled.div`
     position: relative;
   display: flex;
   padding: 0 32px;
+  font-family: Helvetica;
   margin-top: 72px;
   box-sizing: border-box;
   ${Media.down.m}{

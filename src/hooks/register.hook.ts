@@ -21,8 +21,6 @@ export const useRegister = () => {
     }
 
     const submitRegister:SubmitHandler<RegistrationInterface> = async (regData:RegistrationInterface) => {
-        console.log('xend', regData);
-        
         try {
             const res = await onRegister({
                 variables: {

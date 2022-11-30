@@ -12,12 +12,13 @@ export const cabinetRoutes = {
 }
 
 export const cabinetLinks:LinkT[] = [
-    // {to: cabinetRoutes.personalInformation, label:'Personal information',svgName:'user'},
     {to: cabinetRoutes.wishlist, label:'Wish list',svgName:'favorite'},
     {to: cabinetRoutes.recentlyViewed, label:'Recently viewed',svgName:'eye'},
     {to: cabinetRoutes.createCompany, label:'Create company',svgName:'briefcase'},
     {to: cabinetRoutes.orders, label:'Ordered products',svgName:'orders'},
     {to: cabinetRoutes.createProduct, label:'Create product',svgName:'product'},
+    {to: cabinetRoutes.cart, label:'Cart',svgName:'cart'},
+    {to: cabinetRoutes.personalInformation, label:'Personal information',svgName:'user'},
 ]
 
 export const routes = {

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Media } from "../../assets/breakpoints";
+import { palette } from "../ui-kit/palette";
 
 export const Container = styled.div`
     width: 50%;
@@ -107,7 +108,7 @@ export const MakeResponse = styled.span`
     &:hover{
         color:#ff7878;
     }
-    color:#3e77aa;
+    color:${palette.linkBlue};
 `;
 
 export const CheckComments = styled.span`
@@ -124,5 +125,5 @@ export const CheckComments = styled.span`
     &:hover{
         opacity:0.8;
     }
-    color:#3e77aa;
+    color:${palette.linkBlue};
 `;

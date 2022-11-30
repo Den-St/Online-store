@@ -7,10 +7,11 @@ import { Rate } from "../CreateReview/Rate"
 import { ReviewContainer,Text,Header, ReviewHeader, DirContainer, MakeResponse, CheckComments, ReviewBlock } from "./styled"
 
 type Props = {
-    review:ReviewT
+    review:ReviewT,
+    isAuthed:boolean
 }
 
-export const ReviewComponent:React.FC<Props> = ({review}) => {
+export const ReviewComponent:React.FC<Props> = ({isAuthed,review}) => {
     const [isOpenComments,setIsOpenComments] = useState(false);
 
     return <ReviewBlock>
@@ -32,9 +33,9 @@ export const ReviewComponent:React.FC<Props> = ({review}) => {
             <Text>{review.consText}</Text>
         </DirContainer>
 
-        <CreateCommentModal commentCreatorName={''} reviewId={review.id} button={
+        {isAuthed && <CreateCommentModal commentCreatorName={''} reviewId={review.id} button={
             <MakeResponse><SvgIcon type={'rollBack'}/>make response</MakeResponse>
-        }/>
+        }/>}
         <CheckComments onClick={() => setIsOpenComments(prev => !prev)}>Check comments</CheckComments>
     </ReviewContainer>
     {isOpenComments && <Comments reviewId={review.id}/>}

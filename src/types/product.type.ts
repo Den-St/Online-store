@@ -72,7 +72,7 @@ export interface CreateProductReq {
     dto:CreateProductInterface
 }
 
-export type SeacrhProductsRes = {
+export type SearchProductsRes = {
     searchProducts:{
         products:ProductT[],
         total:number

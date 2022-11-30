@@ -6,6 +6,7 @@ import { useRecoilValue } from 'recoil';
 import { useMutation } from '@apollo/client';
 import { AddToFavoriteProductsQuery } from '../queries/add-to-favorite-products.query';
 import { DeleteFromFavoriteProductsQuery } from '../queries/delete-from-favorite-products.query';
+import { authModalState } from '../atoms/auth-modal.atom';
 
 export const useFavoriteProducts = () => {
     const user = useRecoilValue(userState);
@@ -13,18 +14,24 @@ export const useFavoriteProducts = () => {
     const [onDelete] = useMutation<undefined,{dto:{userId?:number,productId?:number}}>(DeleteFromFavoriteProductsQuery);
     const [favoriteProducts,setFavoriteProducts] = useRecoilState(favoriteProductsState); 
     const [favoriteProductsIds,setIds] = useState<number[]>([]);
+    const [authModal,setAuthModal] = useRecoilState(authModalState);
 
     useEffect(() => {
         setIds(favoriteProducts.products.map(prod => prod.id));
     },[favoriteProducts]);
 
     const changeFavoriteStatus = async (id:number) => {
-        if(favoriteProducts.products.findIndex(prodId => prodId.id == id) !== -1){
+        if(!user.user.id) {
+            setAuthModal(true);
+            return;
+        }
+        
+        if(favoriteProductsIds.findIndex(prodId => prodId == id) !== -1){
             try{
                 setFavoriteProducts(prev =>
-                     ({products:[...prev.products.filter(prod => prod.id !== id)],isLoading:prev.isLoading}));
+                     ({products:[...prev.products.filter(prod => prod.id != id)],isLoading:prev.isLoading}));
 
-                setIds(prev => [...prev.filter(prodId => prodId !== id)]);
+                setIds(prev => [...prev.filter(prodId => prodId != id)]);
                 await onDelete({variables:{
                     dto:{
                         userId:Number(user.user.id),

@@ -1,6 +1,7 @@
 import { Media } from './../../../assets/breakpoints';
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { palette } from '../../ui-kit/palette';
 
 export const Container = styled.div`
     width:23%;
@@ -29,7 +30,7 @@ export const CategoryItem = styled(Link)`
     font-family: Helvetica;
     width: 100%;
     font-weight: 300;
-    color: #3e77aa;
+    color: ${palette.linkBlue};
     cursor: pointer;
     text-decoration: none;
     &:hover{

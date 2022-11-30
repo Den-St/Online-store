@@ -8,7 +8,7 @@ import { ProductT } from "../../types/product.type";
 
 export const FavoriteProductsProvider:React.FC<{children:React.ReactNode}> = ({children}) => {
     const user = useRecoilValue(userState);
-    const {data,loading} = useQuery<{getUsersFavoriteProducts:ProductT[]},{userId?:number}>(GetFavoriteProductsQuery,{variables:{userId:user.user.id}});
+    const {data,loading} = useQuery<{getUsersFavoriteProducts:ProductT[]},{userId?:number}>(GetFavoriteProductsQuery,{variables:{userId:user.user.id},skip:!user.user.id});
     const [state,setState] = useRecoilState(favoriteProductsState)
     
     useEffect(() => {

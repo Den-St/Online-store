@@ -6,8 +6,10 @@ import { Header } from "../../ui-kit/Cabinet/Header"
 import { Input } from "../../ui-kit/Form/Input/style";
 import Error from "../../ui-kit/Form/Error/Error";
 import {DirHeader} from "./DirHeader";
-import { Dir, ContentContainer,ContentWrapper, EditButton ,CancelEditingButton,ConfirmEditingButton,ButtonsContainer, ItemContainer, ItemHeader, ItemContent} from "./styles"
+import { Dir, ContentContainer,ContentWrapper, EditButton ,CancelEditingButton,ConfirmEditingButton,
+    ButtonsContainer, ItemContainer, ItemHeader, ItemContent, QuitAccount} from "./styles"
 import { emailValidation } from "../../LoginForm";
+import Cookies from "js-cookie";
 
 type Props = {
     user:UserType;
@@ -21,9 +23,10 @@ type Props = {
     toggleOpen:() => void;
     onConfirmEditing:(data:UserEditInterface) => Promise<void>;
     error:any;
+    onQuit:() => void;
 }
 
-export const PersonalInformationComponent:React.FC<Props> = ({error,onConfirmEditing,user,isOnEditing,isOpened,onBlurEditing,onBlurOpen,onEditing,onOpen,toggleEditing,toggleOpen}) => {
+export const PersonalInformationComponent:React.FC<Props> = ({onQuit,error,onConfirmEditing,user,isOnEditing,isOpened,onBlurEditing,onBlurOpen,onEditing,onOpen,toggleEditing,toggleOpen}) => {
     const {
         register,
         formState:{errors},
@@ -75,5 +78,6 @@ export const PersonalInformationComponent:React.FC<Props> = ({error,onConfirmEdi
                 </ButtonsContainer> : <EditButton onClick={onEditing}>Edit</EditButton>}
             </ContentContainer>}
         </Dir>
+        <QuitAccount onClick={onQuit}>Quit</QuitAccount>
     </Container>
 }

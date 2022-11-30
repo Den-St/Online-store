@@ -7,15 +7,21 @@ import { AddProductToCartT } from './../types/cart.type';
 import { useMutation } from '@apollo/client';
 import { useState } from 'react';
 import { cartProductsState } from '../atoms/cart-products.atom';
+import { authModalState } from '../atoms/auth-modal.atom';
 
 export const useAddProductToCart = () => {
     const {id:productId} = useParams();
     const user = useRecoilValue(userState);
     const [onAdd] = useMutation<undefined,AddProductToCartT>(AddProductToCartQuery);
     const [productsIdsInCart,setProductsIdsInCart] = useRecoilState(cartProductsState);
+    const [authForm,setAuthForm] = useRecoilState(authModalState);
     const [isOnNotificationAnimation,setIsOnNotificationAnimation] = useState(false);
 
     const onAddProductToCart = async () => {
+        if(!user.user.id){
+            setAuthForm(true);
+            return;
+        }
         try{
             await onAdd({variables:{
                 dto:{

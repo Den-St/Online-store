@@ -12,6 +12,7 @@ export const Header = styled.span`
 `;
 
 export const Top = styled.div`
+margin-top: 75px;
     width: 100%;
     box-sizing: border-box;
     display: flex;

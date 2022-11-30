@@ -55,6 +55,8 @@ export const Logo = styled(Link)`
   margin: 0 30px 0 50px;
   text-decoration: none;
   ${Media.down.m}{
+  margin: 0 30px 0 30px;
+
   }
 `;
 
@@ -263,4 +265,26 @@ export const NoProducts = styled.span`
   justify-content: center;
   align-items: center;
   height: 50px;
+`;
+
+export const SignButtonContainer = styled.button`
+  width: 40px;
+  background: transparent;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 5px;
+  border-radius: 5px;
+  transition: 0.3s;
+  position: relative;
+  &:hover {
+    background-color: #575757;
+  }
+  .anticon {
+    color: #ffffff;
+    font-size: 20px;
+  }
+  border: none;
+  outline: none;
 `;

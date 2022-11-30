@@ -1,6 +1,7 @@
 import { Media } from './../../../assets/breakpoints';
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { palette } from '../../ui-kit/palette';
 
 export const Container = styled.div`
     width: 50%;
@@ -211,7 +212,7 @@ export const AlreadyInCart = styled(Link)`
     margin-left: 10px;
     color:black;
     text-decoration: none;
-    color: #3e77aa;
+    color: ${palette.linkBlue};
     &:hover{
         color: #f84147;
         text-decoration: underline;

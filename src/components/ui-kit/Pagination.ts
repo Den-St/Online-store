@@ -1,3 +1,5 @@
+import { palette } from "./palette";
+
 export const PaginationStyles = `
     .ant-pagination {
         display: flex;
@@ -25,7 +27,7 @@ export const PaginationStyles = `
         display: flex;
         align-items: center;
         justify-content: center;
-        color:#3e77aa;
+        color:${palette.linkBlue};
         border: 1px solid #a7a7a7;
         width: 4%;
         height: 80%;
@@ -47,8 +49,8 @@ export const PaginationStyles = `
         display: flex;
         align-items: center;
         justify-content: center;
-        color:#3e77aa;
-        border: 1px solid #3e77aa;
+        border: 1px solid ${palette.linkBlue};
+        color:${palette.linkBlue};
         width: 4%;
         height: 80%;
         cursor: pointer;
@@ -63,7 +65,7 @@ export const PaginationStyles = `
         align-items: center;
         justify-content: center;
         color:#a7a7a7;
-        border: 1px solid #3e77aa;
+        border: 1px solid ${palette.linkBlue};
         width: 4%;
         height: 80%;
         cursor: pointer;

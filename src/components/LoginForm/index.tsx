@@ -10,6 +10,8 @@ import { InputBlock } from '../ui-kit/Form/InputBlock/styles';
 import {AuthTypeChanger} from "../ui-kit/Form/AuthTypeChanger/styles";
 import {SignFormPropsType} from "../../types/sign-form-props.type";
 import {useLogin} from "../../hooks/login.hook";
+import { useRecoilState } from 'recoil';
+import { authModalState } from '../../atoms/auth-modal.atom';
 
 export const emailValidation = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -19,12 +21,15 @@ const LoginForm:React.FC<SignFormPropsType> = ({onChangeSignType,onClose}) => {
         formState:{errors},
         handleSubmit,
     } = useForm<LoginInterface>();
-
+    const [authModal,setAuthModal] = useRecoilState(authModalState)
     const {success,submitLogin,error} = useLogin();
 
 
     useEffect(() => {
-        if(success) onClose();
+        if(success) {
+            onClose();
+            setAuthModal(false);
+        }
     },[success])
 
     return <Container onSubmit={handleSubmit(submitLogin)}>

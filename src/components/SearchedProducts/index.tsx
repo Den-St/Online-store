@@ -5,7 +5,7 @@ import { ProductT } from "../../types/product.type"
 import { ProductItem } from "../ui-kit/Product"
 import { Container } from "../ui-kit/Product/Container/styles"
 import { ProductSceleton } from "../ui-kit/Product/Sceleton/ProductSceleton"
-import { ProductsContainer } from "../ui-kit/Product/styles"
+import { PaginationContainer, ProductsContainer } from "../ui-kit/Product/styles"
 import { Header, Top } from "./styles"
 
 type Props = {
@@ -41,6 +41,6 @@ export const SearchedProductsComponent:React.FC<Props> = ({searchText,changeFavo
                 : <><ProductSceleton/><ProductSceleton/><ProductSceleton/><ProductSceleton/><ProductSceleton/><ProductSceleton/></>}
         </ProductsContainer>
 
-        {!!total && (total > 10) && <Pagination defaultCurrent={pageNumber} onChange={onChangePage} total={total}/>}
+        {!!total && (total > 10) && <PaginationContainer><Pagination defaultCurrent={pageNumber} onChange={onChangePage} total={total}/></PaginationContainer>}
     </Container>
 }

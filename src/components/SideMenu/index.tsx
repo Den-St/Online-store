@@ -4,7 +4,7 @@ import {SvgIcon} from "../../assets/svg/SvgIcon";
 import {UserType} from "../../types/user.type";
 import UserInfo from './UserInfo';
 import Sign from './Sign';
-import {cabinetRoutes} from "../../constants/routes";
+import {cabinetLinks, cabinetRoutes} from "../../constants/routes";
 import { UserInfoContainer } from '../ui-kit/UserHeaderStyles';
 
 type Props = {
@@ -18,14 +18,16 @@ type Props = {
 const SideMenuComponent:React.FC<Props> = ({user,close,$opened,$closePressed,openAuthModal}) => {
     return <Container $opened={$opened} $closePressed={$closePressed}>
         <UserInfoContainer>
-            {(user.name && user.email) ? <UserInfo close={close} name={user?.name} email={user.email}/> : <Sign openAuthModal={openAuthModal}/>}
+            {(user.name && user.email) ? 
+                <UserInfo close={close} name={user?.name} email={user.email}/> 
+                : <Sign/>}
         </UserInfoContainer>
         <MainMenu svgColor={"#000000"}>
-            <MenuItem onClick={close} to={cabinetRoutes.orders}><SvgIcon type={"orders"} width={"40px"} height={"40px"} />Orders</MenuItem>
-            <MenuItem onClick={close} to={cabinetRoutes.cart}><SvgIcon type={"cart"} width={"40px"} height={"40px"} />Cart</MenuItem>
-            <MenuItem onClick={close} to={cabinetRoutes.wishlist}><SvgIcon type={"favorite"} width={"40px"} height={"40px"} />Favorites</MenuItem>
-            <MenuItem onClick={close} to={cabinetRoutes.createCompany}><SvgIcon type={"briefcase"} width={"40px"} height={"40px"} />Create company</MenuItem>
-            <MenuItem onClick={close} to={cabinetRoutes.createProduct}><SvgIcon type={"product"} width={"40px"} height={"40px"} />Create product</MenuItem>
+            {cabinetLinks.map(link => 
+                <MenuItem key={link.to} onClick={close} to={link.to}>
+                    <SvgIcon type={link.svgName} width={"40px"} height={"40px"} />
+                    {link.label}
+                </MenuItem>)}
         </MainMenu>
     </Container>
 };

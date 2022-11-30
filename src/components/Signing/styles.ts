@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Media } from "../../assets/breakpoints";
 
 export const Container = styled.div`
   width: 45%;
@@ -9,6 +10,9 @@ export const Container = styled.div`
   border-radius: 10px;
   background-color: white;
   overflow: scroll;
+  ${Media.down.m}{
+    width: 85%;
+  }
 `;
 
 export const Header = styled.div`
@@ -23,6 +27,10 @@ export const Header = styled.div`
   font-family: Futura;
   border-bottom: 1px solid #a7a7a7;
   box-sizing: border-box;
+  ${Media.down.m}{
+    padding: 5px 10px;
+    font-size: 18px;
+  }
 `;
 
 export const Cross = styled.button`
@@ -41,6 +49,11 @@ export const Cross = styled.button`
       fill: #cc1313;
     }
   }
+
+  ${Media.down.m}{
+    width: 20px;
+    height: 20px;
+  }
 `;
 
 export const MainContainer = styled.div`
@@ -49,6 +62,9 @@ export const MainContainer = styled.div`
   padding: 24px;
   box-sizing: border-box;
   position: relative;
+  ${Media.down.m}{
+    padding: 12px;
+  }
 `;
 
 export const SigningAsContainer = styled.div`
@@ -57,6 +73,9 @@ export const SigningAsContainer = styled.div`
   justify-content: center;
   padding-top: 30px;
   box-sizing: border-box;
+  ${Media.down.m}{
+    padding-top: 15px;
+  }
 `;
 
 export const FormContainer = styled.div`
@@ -76,6 +95,10 @@ export const Or = styled.div`
   position: absolute;
   top: 50%;
   left: 55%;
+  ${Media.down.m}{
+    height: 15px;
+    font-size: 12px;
+  }
 `;
 
 export const GoogleSign = styled.div`
@@ -87,4 +110,8 @@ export const GoogleSign = styled.div`
   background-color: rgb(246, 245, 245);
   border-radius: 3px;
   border: 1px solid rgb(182, 182, 182);
+  ${Media.down.m}{
+    width: 100px;
+    height: 30px;
+  }
 `;

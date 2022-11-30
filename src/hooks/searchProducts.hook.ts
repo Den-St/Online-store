@@ -2,12 +2,19 @@ import { useCallback, useState } from 'react';
 import { SearchProductsQuery } from './../queries/seacrhProducts.query';
 import { useQuery } from '@apollo/client';
 import _debounce from 'lodash/debounce';
-import { SearchProductsReq,SeacrhProductsRes } from '../types/product.type';
+import { SearchProductsReq,SearchProductsRes } from '../types/product.type';
 import { useSearchParams } from 'react-router-dom';
 import { OrderRuleT } from '../types/order-rule.type';
 
 export const useSearchBarProducts = () => {
-    const {data,loading,refetch} = useQuery<SeacrhProductsRes,SearchProductsReq>(SearchProductsQuery);
+    const {data,loading,refetch} = useQuery<SearchProductsRes,SearchProductsReq>(SearchProductsQuery,{variables:{dto:{
+        orderRule:{
+            fieldName:'popularity',
+            orderValue:'ASC'
+        },
+        page:0,
+        productName:''
+    }}});
     const search = (value?: string) => refetch({dto:{productName:value,orderRule:{fieldName:"popularity",orderValue:"ASC"},page:1}});
     
     const debounceRefetch = useCallback(_debounce(search, 400), []);
@@ -21,7 +28,7 @@ export const useSearchProducts = () => {
     const [orderRule,setOrderRule] = useState<OrderRuleT>({fieldName:"popularity",orderValue:"ASC"});
     const text = params.get('text') || '';
 
-    const {data,loading} = useQuery<SeacrhProductsRes,SearchProductsReq>(SearchProductsQuery,{variables:{
+    const {data,loading} = useQuery<SearchProductsRes,SearchProductsReq>(SearchProductsQuery,{variables:{
         dto:{
             page:pageNumber,
             orderRule:orderRule,

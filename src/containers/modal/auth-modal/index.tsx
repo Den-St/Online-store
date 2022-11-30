@@ -1,25 +1,21 @@
 import React from 'react';
 import {Container} from "./styles";
 import Signing from "../../Signing";
-import {ModalProps} from "../../../types/modal-props.type";
 import {Overlay} from "../../../components/ui-kit/Modal/overlay";
 import {BasePortal} from "../../../components/ui-kit/Modal/Portal";
-import {useAuthModal} from "../../../hooks/auth-modal.hook";
 
-const AuthModal:React.FC<ModalProps> = ({ button,authType}) => {
-    const {open,close,opened} = useAuthModal();
+type Props = {
+    onBlur:() => void;
+    authType:'Login' | 'Register'
+}
 
-    return <>
-        <div onClick={open}>
-            {button}
-        </div>
-        {opened && <BasePortal>
+const AuthModal:React.FC<Props> = ({authType,onBlur}) => {
+    return <BasePortal>
             <Container>
-                <Overlay onClick={close}/>
-                <Signing authType={authType} closeModal={close}/>
+                <Overlay onClick={onBlur}/>
+                <Signing authType={authType} closeModal={onBlur}/>
             </Container>
-        </BasePortal>}
-    </>
+        </BasePortal>
 };
 
 export default AuthModal;

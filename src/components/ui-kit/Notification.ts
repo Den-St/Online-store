@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 import { Media } from "../../assets/breakpoints";
+import { palette } from "./palette";
 
 const notificationAnimation = keyframes`
     0% {bottom:0};
@@ -31,7 +32,7 @@ export const Notiification = styled.div`
 `;
 
 export const Open = styled(Link)`
-    color: #3e77aa;
+    color: ${palette.linkBlue};
     cursor: pointer;
     transition: 0.4s;
     &:hover{

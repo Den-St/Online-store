@@ -14,6 +14,8 @@ import {PhoneInputContainer} from "../ui-kit/Form/PhoneInputContainer/styles";
 import {useRegister} from "../../hooks/register.hook";
 import {SignFormPropsType} from "../../types/sign-form-props.type";
 import { Container } from '../ui-kit/Cabinet/Container';
+import { useRecoilState } from 'recoil';
+import { authModalState } from '../../atoms/auth-modal.atom';
 
 const RegistrationForm:React.FC<SignFormPropsType> = ({onChangeSignType,onClose}) => {
     const {
@@ -22,11 +24,14 @@ const RegistrationForm:React.FC<SignFormPropsType> = ({onChangeSignType,onClose}
         handleSubmit,
 
     } = useForm<RegistrationInterface>();
-
+    const [authModal,setAuthModal] = useRecoilState(authModalState);
     const {onChangeSelect,submitRegister,phoneNumberPrefixes,error,success} = useRegister();
 
     useEffect(() => {
-        if(success) onClose();
+        if(success) {
+            onClose();
+            setAuthModal(false);
+        }
     },[success]);
 
     return <Container onSubmit={handleSubmit(submitRegister)}>
@@ -42,7 +47,7 @@ const RegistrationForm:React.FC<SignFormPropsType> = ({onChangeSignType,onClose}
         <InputBlock>
             <Label>Phone number</Label>
             <PhoneInputContainer>
-                <Select sx={{"height":"34px"}} onChange={onChangeSelect} defaultValue={phoneNumberPrefixes[0]}>
+                <Select sx={{"height":"34px"}} className={'phoneSelect'} onChange={onChangeSelect} defaultValue={phoneNumberPrefixes[0]}>
                     {phoneNumberPrefixes.map(pref => <MenuItem key={pref} value={pref}>{pref}</MenuItem>)}
                 </Select>
                 <Input error={!!errors?.phoneNumber?.message} placeholder={"Phone number"} {...register("phoneNumber",{

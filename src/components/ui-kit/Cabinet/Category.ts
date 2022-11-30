@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Media } from "../../../assets/breakpoints";
+import { palette } from "../palette";
 import { breatheSceletonAnimation } from './../animations';
 
 export const CategoryContainer = styled.div<{$isChosen:boolean}>`
@@ -7,11 +8,11 @@ export const CategoryContainer = styled.div<{$isChosen:boolean}>`
     font-family: Helvetica;
     width: 100%;
     font-weight: 300;
-    color: #3e77aa;
+    color: ${palette.linkBlue};
     cursor: pointer;
     ${({$isChosen}) => $isChosen && `color: #f7373d;`}
     &:hover{
-        color: #f84147;
+        color: ${palette.linkRed};
     }
 
     ${Media.down.m}{
